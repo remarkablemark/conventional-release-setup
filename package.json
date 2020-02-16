@@ -3,5 +3,17 @@
   "version": "0.0.0",
   "description": "Sets up package for committing/releasing with conventional commits.",
   "author": "Mark <mark@remarkablemark.org>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remarkablemark/conventional-release-setup"
+  },
+  "bugs": {
+    "url": "https://github.com/remarkablemark/conventional-release-setup/issues"
+  },
+  "keywords": [
+    "conventional-release-setup",
+    "conventional-commits",
+    "cli"
+  ],
   "license": "MIT"
 }
