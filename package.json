@@ -1,0 +1,7 @@
+{
+  "name": "conventional-release-setup",
+  "version": "0.0.0",
+  "description": "Sets up package for committing/releasing with conventional commits.",
+  "author": "Mark <mark@remarkablemark.org>",
+  "license": "MIT"
+}
