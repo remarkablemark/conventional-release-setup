@@ -15,5 +15,9 @@
     "conventional-commits",
     "cli"
   ],
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4"
+  },
   "license": "MIT"
 }
