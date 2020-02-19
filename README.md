@@ -38,6 +38,33 @@ Otherwise, you can install and execute the package binary like so:
 $ npx conventional-release-setup
 ```
 
+What does this script do?
+
+It installs the devDependencies:
+
+- [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) - lints commit messages
+- [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
+- [husky](https://www.npmjs.com/package/husky) - sets up Git hooks
+- [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog and bumps version
+
+And copies the configs to your project root:
+
+- [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
+- [.huskyrc](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.huskyrc)
+
+For your first release, it's recommended to do the following:
+
+```sh
+# git stash
+$ npm version 1.0.0
+$ git add package.json
+$ git commit -m 'chore(package): bump version to 1.0.0'
+$ npx standard-version --first-release
+# git stash pop
+```
+
+See [standard-version > First Release](https://github.com/conventional-changelog/standard-version#first-release) for more details.
+
 ## Release
 
 Only collaborators with credentials can release and publish:
