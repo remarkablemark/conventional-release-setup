@@ -14,6 +14,14 @@ const execSyncOptions = {
 };
 
 /**
+ * Runs command.
+ *
+ * @param {String} command
+ * @return {String}
+ */
+const exec = command => execSync(command, execSyncOptions);
+
+/**
  * Logs to console.
  *
  * @param {...*} args
@@ -33,7 +41,7 @@ if (existsSync(packageJsonPath)) {
   log('`package.json` found');
 } else {
   log('`package.json` not found, initializing new package...');
-  execSync('npm init --yes', execSyncOptions);
+  exec('npm init --yes');
 }
 
 /**
@@ -46,10 +54,7 @@ const devDependencies = [
   'husky',
   'standard-version'
 ];
-execSync(
-  `npm install --save-dev ${devDependencies.join(' ')}`,
-  execSyncOptions
-);
+exec(`npm install --save-dev ${devDependencies.join(' ')}`);
 
 /**
  * Copy files.
