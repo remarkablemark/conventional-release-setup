@@ -64,9 +64,9 @@ try {
  */
 const packageJsonPath = resolve(cwd, 'package.json');
 if (existsSync(packageJsonPath)) {
-  log('`package.json` found');
+  log('Found `package.json`');
 } else {
-  log('`package.json` not found, initializing new package...');
+  log('Unable to find `package.json`, initializing new package...');
   exec('npm init --yes');
   const packageJson = require(packageJsonPath);
   packageJson.version = '1.0.0-alpha';
@@ -94,7 +94,7 @@ const filesPath = resolve(__dirname, 'files');
 readdirSync(filesPath).forEach(filename => {
   const source = resolve(filesPath, filename);
   const destination = resolve(cwd, filename);
-  log(`Copying \`${filename}\`...`);
+  log(`Copying \`${filename}\``);
   copyFileSync(source, destination);
   isGitRepository && exec(`git add ${filename}`);
 });
@@ -103,9 +103,6 @@ readdirSync(filesPath).forEach(filename => {
  * Commit changes.
  */
 log('Committing changes...');
-isGitRepository &&
-  exec(
-    'git commit -m "chore: run `conventional-release-setup`" -m "https://github.com/remarkablemark/conventional-release-setup"'
-  );
+isGitRepository && exec(`git commit -m "chore: run ${name} v${version}"`);
 
-log(`${name} done`);
+log(`Finished ${name}`);
