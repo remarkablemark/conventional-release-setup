@@ -50,6 +50,16 @@ process.on('exit', code => {
 log(`${name} v${version}`);
 
 /**
+ * Check if current working directory is git repository.
+ */
+let isGitRepository = true;
+try {
+  exec(`git -C ${cwd} rev-parse`);
+} catch (err) {
+  isGitRepository = false;
+}
+
+/**
  * Check if `package.json` exists.
  */
 const packageJsonPath = resolve(cwd, 'package.json');
@@ -74,7 +84,7 @@ const devDependencies = [
   'standard-version'
 ];
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
-exec('git add package.json');
+isGitRepository && exec('git add package.json');
 
 /**
  * Copy files.
@@ -86,15 +96,16 @@ readdirSync(filesPath).forEach(filename => {
   const destination = resolve(cwd, filename);
   log(`Copying \`${filename}\`...`);
   copyFileSync(source, destination);
-  exec(`git add ${filename}`);
+  isGitRepository && exec(`git add ${filename}`);
 });
 
 /**
  * Commit changes.
  */
 log('Committing changes...');
-exec(
-  'git commit -m "chore: run `conventional-release-setup`" -m "https://github.com/remarkablemark/conventional-release-setup"'
-);
+isGitRepository &&
+  exec(
+    'git commit -m "chore: run `conventional-release-setup`" -m "https://github.com/remarkablemark/conventional-release-setup"'
+  );
 
 log(`${name} done`);
