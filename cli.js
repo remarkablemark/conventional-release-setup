@@ -6,11 +6,6 @@ const { resolve } = require('path');
 
 const { name, version } = require('./package');
 
-/**
- * Display package info.
- */
-console.log(`INFO: ${name} v${version}`);
-
 const cwd = process.cwd();
 
 const execSyncOptions = {
@@ -18,39 +13,41 @@ const execSyncOptions = {
   stdio: 'inherit'
 };
 
-const packageJsonPath = resolve(cwd, 'package.json');
+/**
+ * Display package info.
+ */
+console.log(`INFO: ${name} v${version}`);
 
 /**
  * Check if `package.json` exists.
  */
-if (!existsSync(packageJsonPath)) {
+const packageJsonPath = resolve(cwd, 'package.json');
+if (existsSync(packageJsonPath)) {
+  console.log('INFO: `package.json` found');
+} else {
   console.log('INFO: `package.json` not found, initializing new package');
   execSync('npm init --yes', execSyncOptions);
-} else {
-  console.log('INFO: `package.json` found');
 }
 
+/**
+ * Install dependencies.
+ */
+console.log('INFO: installing devDependencies');
 const devDependencies = [
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
   'standard-version'
 ];
-
-/**
- * Install dependencies.
- */
-console.log('INFO: installing devDependencies');
 execSync(
   `npm install --save-dev ${devDependencies.join(' ')}`,
   execSyncOptions
 );
 
-const filesPath = resolve(__dirname, 'files');
-
 /**
  * Copy files.
  */
+const filesPath = resolve(__dirname, 'files');
 readdirSync(filesPath).forEach(filename => {
   const source = resolve(filesPath, filename);
   const destination = resolve(cwd, filename);
