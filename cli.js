@@ -14,25 +14,32 @@ const execSyncOptions = {
 };
 
 /**
+ * Logs to console.
+ *
+ * @param {...*} args
+ */
+const log = (...args) => console.log('INFO:', ...args);
+
+/**
  * Display package info.
  */
-console.log(`INFO: ${name} v${version}`);
+log(`${name} v${version}`);
 
 /**
  * Check if `package.json` exists.
  */
 const packageJsonPath = resolve(cwd, 'package.json');
 if (existsSync(packageJsonPath)) {
-  console.log('INFO: `package.json` found');
+  log('`package.json` found');
 } else {
-  console.log('INFO: `package.json` not found, initializing new package');
+  log('`package.json` not found, initializing new package...');
   execSync('npm init --yes', execSyncOptions);
 }
 
 /**
  * Install dependencies.
  */
-console.log('INFO: installing devDependencies');
+log('Installing devDependencies...');
 const devDependencies = [
   '@commitlint/cli',
   '@commitlint/config-conventional',
@@ -47,10 +54,11 @@ execSync(
 /**
  * Copy files.
  */
+log('Copying files...');
 const filesPath = resolve(__dirname, 'files');
 readdirSync(filesPath).forEach(filename => {
   const source = resolve(filesPath, filename);
   const destination = resolve(cwd, filename);
-  console.log(`INFO: copying \`${filename}\``);
+  log(`Copying \`${filename}\``);
   copyFileSync(source, destination);
 });
