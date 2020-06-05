@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Sets up package for committing/releasing with conventional commits.",
   "author": "Mark <mark@remarkablemark.org>",
-  "bin": "cli.js",
+  "bin": "index.js",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "npm run lint -- --fix",
@@ -32,8 +32,8 @@
     "standard-version": "^8.0.0"
   },
   "files": [
-    "/cli.js",
-    "/files"
+    "/files",
+    "/index.js"
   ],
   "license": "MIT"
 }
