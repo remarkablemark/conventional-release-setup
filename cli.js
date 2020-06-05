@@ -74,6 +74,7 @@ const devDependencies = [
   'standard-version'
 ];
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
+exec('git add package.json');
 
 /**
  * Copy files.
@@ -83,8 +84,17 @@ const filesPath = resolve(__dirname, 'files');
 readdirSync(filesPath).forEach(filename => {
   const source = resolve(filesPath, filename);
   const destination = resolve(cwd, filename);
-  log(`Copying \`${filename}\``);
+  log(`Copying \`${filename}\`...`);
   copyFileSync(source, destination);
+  exec(`git add ${filename}`);
 });
+
+/**
+ * Commit changes.
+ */
+log('Committing changes...');
+exec(
+  'git commit -m "chore: run `conventional-release-setup`" -m "https://github.com/remarkablemark/conventional-release-setup"'
+);
 
 log(`${name} done`);
