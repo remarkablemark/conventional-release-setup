@@ -68,10 +68,16 @@ if (existsSync(packageJsonPath)) {
 } else {
   log('Unable to find `package.json`, initializing new package...');
   exec('npm init --yes');
-  const packageJson = require(packageJsonPath);
-  packageJson.version = '1.0.0-alpha';
-  write(packageJsonPath, packageJson);
 }
+
+/**
+ * Update `package.json`.
+ */
+const packageJson = require(packageJsonPath);
+packageJson.version = `${packageJson.version}-alpha`;
+packageJson.scripts = packageJson.scripts || {};
+packageJson.scripts.release = 'standard-version --no-verify';
+write(packageJsonPath, packageJson);
 
 /**
  * Install dependencies.
