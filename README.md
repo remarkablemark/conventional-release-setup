@@ -45,14 +45,19 @@ npx conventional-release-setup
 
 What does the script do?
 
-It installs the devDependencies:
+It updates `package.json`:
+
+- appends `-alpha` to version
+- adds script `release`
+
+Installs devDependencies:
 
 - [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) - lints commit messages
 - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
 - [husky](https://www.npmjs.com/package/husky) - sets up Git hooks
 - [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog, bumps version, creates Git commit and tag
 
-And copies the configs to your project root:
+Copies configs to your project:
 
 - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - [.huskyrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.huskyrc.json)
@@ -70,7 +75,7 @@ If `-alpha` is appended to your `package.json` version:
 Then you can run a release like so:
 
 ```sh
-npx standard-version # --no-verify
+npm run release # npx standard-version --no-verify
 ```
 
 Otherwise, you can [release as a target type imperatively](https://github.com/conventional-changelog/standard-version#release-as-a-target-type-imperatively-npm-version-like):
