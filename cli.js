@@ -28,6 +28,10 @@ const exec = command => execSync(command, execSyncOptions);
  */
 const log = (...args) => console.log('INFO:', ...args);
 
+process.on('exit', code => {
+  log(`Exiting with code: ${code}`);
+});
+
 /**
  * Display package info.
  */
@@ -67,3 +71,5 @@ readdirSync(filesPath).forEach(filename => {
   log(`Copying \`${filename}\``);
   copyFileSync(source, destination);
 });
+
+log(`${name} done`);
