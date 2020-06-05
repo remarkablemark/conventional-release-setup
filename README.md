@@ -3,9 +3,9 @@
 [![NPM](https://nodei.co/npm/conventional-release-setup.png)](https://nodei.co/npm/conventional-release-setup/)
 
 [![NPM version](https://img.shields.io/npm/v/conventional-release-setup.svg)](https://www.npmjs.com/package/conventional-release-setup)
+[![Build Status](https://travis-ci.org/remarkablemark/conventional-release-setup.svg?branch=master)](https://travis-ci.org/remarkablemark/conventional-release-setup)
 
 <!--
-[![Build Status](https://travis-ci.org/remarkablemark/conventional-release-setup.svg?branch=master)](https://travis-ci.org/remarkablemark/conventional-release-setup)
 [![Coverage Status](https://coveralls.io/repos/github/remarkablemark/conventional-release-setup/badge.svg?branch=master)](https://coveralls.io/github/remarkablemark/conventional-release-setup?branch=master)
 -->
 
