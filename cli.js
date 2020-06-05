@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { copyFileSync, existsSync, readdirSync } = require('fs');
+const { copyFileSync, existsSync, readdirSync, writeFileSync } = require('fs');
 const { execSync } = require('child_process');
 const { resolve } = require('path');
 
@@ -28,6 +28,18 @@ const exec = command => execSync(command, execSyncOptions);
  */
 const log = (...args) => console.log('INFO:', ...args);
 
+/**
+ * Writes to file.
+ *
+ * @param {String} file
+ * @param {*} data
+ */
+const write = (file, data) =>
+  writeFileSync(
+    file,
+    (typeof data === 'string' ? data : JSON.stringify(data, null, 2)) + '\n'
+  );
+
 process.on('exit', code => {
   log(`Exiting with code: ${code}`);
 });
@@ -46,6 +58,9 @@ if (existsSync(packageJsonPath)) {
 } else {
   log('`package.json` not found, initializing new package...');
   exec('npm init --yes');
+  const packageJson = require(packageJsonPath);
+  packageJson.version = '1.0.0-alpha';
+  write(packageJsonPath, packageJson);
 }
 
 /**
