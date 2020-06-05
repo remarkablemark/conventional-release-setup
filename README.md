@@ -12,7 +12,7 @@
 A command-line tool for setting up a package for committing and releasing with [conventional commits](https://www.conventionalcommits.org/):
 
 ```sh
-$ npx conventional-release-setup
+npx conventional-release-setup
 ```
 
 ## Installation
@@ -21,10 +21,10 @@ To install the package globally:
 
 ```sh
 # with npm
-$ npm install --global conventional-release-setup
+npm install --global conventional-release-setup
 
 # with yarn
-$ yarn global add conventional-release-setup
+yarn global add conventional-release-setup
 ```
 
 ## Usage
@@ -32,14 +32,16 @@ $ yarn global add conventional-release-setup
 If the package is installed globally, you can execute it in the command-line:
 
 ```sh
-$ conventional-release-setup
+conventional-release-setup
 ```
 
 Otherwise, you can install and execute the package binary like so:
 
 ```sh
-$ npx conventional-release-setup
+npx conventional-release-setup
 ```
+
+### Script
 
 What does the script do?
 
@@ -55,18 +57,32 @@ And copies the configs to your project root:
 - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - [.huskyrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.huskyrc.json)
 
-For your first release, you can do the following:
+### Release
 
-```sh
-$ npx standard-version --release-as 1.0.0
+If `-alpha` is appended to your `package.json` version:
+
+```json
+{
+  "version": "1.0.0-alpha"
+}
 ```
 
-See [standard-version > Release as a Target Type Imperatively](https://github.com/conventional-changelog/standard-version#release-as-a-target-type-imperatively-npm-version-like).
-
-Alternatively, you can run as [first release](https://github.com/conventional-changelog/standard-version#first-release) as well:
+Then you can run a release like so:
 
 ```sh
-$ npx standard-version --first-release
+npx standard-version # --no-verify
+```
+
+Otherwise, you can [release as a target type imperatively](https://github.com/conventional-changelog/standard-version#release-as-a-target-type-imperatively-npm-version-like):
+
+```sh
+npx standard-version --release-as 1.0.0
+```
+
+Or if you want to use the current version as your [first release](https://github.com/conventional-changelog/standard-version#first-release):
+
+```sh
+npx standard-version --first-release
 ```
 
 ## Release
@@ -74,8 +90,8 @@ $ npx standard-version --first-release
 Only collaborators with credentials can release and publish:
 
 ```sh
-$ npm run release
-$ git push --follow-tags && npm publish
+npm run release
+git push --follow-tags && npm publish
 ```
 
 ## License
