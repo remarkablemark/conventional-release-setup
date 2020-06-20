@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/remarkablemark/conventional-release-setup/compare/v1.1.0...v1.1.1) (2020-06-20)
+
+
+### Bug Fixes
+
+* **index:** do not append `-alpha` to package.json version ([ec2ea84](https://github.com/remarkablemark/conventional-release-setup/commit/ec2ea84bd1dc35dd5c03083d84a4318a3b2738e4))
+
 ## [1.1.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.0.1...v1.1.0) (2020-06-05)
 
 
