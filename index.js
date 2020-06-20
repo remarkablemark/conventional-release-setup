@@ -74,7 +74,6 @@ if (existsSync(packageJsonPath)) {
  * Update `package.json`.
  */
 const packageJson = require(packageJsonPath);
-packageJson.version = `${packageJson.version}-alpha`;
 packageJson.scripts = packageJson.scripts || {};
 packageJson.scripts.release = 'standard-version --no-verify';
 write(packageJsonPath, packageJson);
