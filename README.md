@@ -5,17 +5,13 @@
 [![NPM version](https://img.shields.io/npm/v/conventional-release-setup.svg)](https://www.npmjs.com/package/conventional-release-setup)
 [![Build Status](https://travis-ci.org/remarkablemark/conventional-release-setup.svg?branch=master)](https://travis-ci.org/remarkablemark/conventional-release-setup)
 
-<!--
-[![Coverage Status](https://coveralls.io/repos/github/remarkablemark/conventional-release-setup/badge.svg?branch=master)](https://coveralls.io/github/remarkablemark/conventional-release-setup?branch=master)
--->
-
-A command-line tool for setting up a package for committing and releasing with [conventional commits](https://www.conventionalcommits.org/):
+Sets up an npm package for committing and releasing with [conventional commits](https://www.conventionalcommits.org/):
 
 ```sh
 npx conventional-release-setup
 ```
 
-## Installation
+## Install
 
 To install the package globally:
 
@@ -41,7 +37,7 @@ Otherwise, you can install and execute the package binary like so:
 npx conventional-release-setup
 ```
 
-### Script
+## Explanation
 
 What does the script do?
 
@@ -62,7 +58,7 @@ Copies configs to your project:
 - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - [.huskyrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.huskyrc.json)
 
-### Release
+## Release
 
 If `-alpha` is appended to your `package.json` version:
 
@@ -72,7 +68,7 @@ If `-alpha` is appended to your `package.json` version:
 }
 ```
 
-Then you can run a release like so:
+You can run a release like so:
 
 ```sh
 npm run release # npx standard-version --no-verify
@@ -88,6 +84,20 @@ Or if you want to use the current version as your [first release](https://github
 
 ```sh
 npx standard-version --first-release
+```
+
+## Lint
+
+Lint files:
+
+```sh
+npm run lint
+```
+
+Fix lint errors:
+
+```sh
+npm run lint:fix
 ```
 
 ## Release
