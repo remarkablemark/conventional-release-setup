@@ -3,7 +3,7 @@
 [![NPM](https://nodei.co/npm/conventional-release-setup.png)](https://nodei.co/npm/conventional-release-setup/)
 
 [![NPM version](https://img.shields.io/npm/v/conventional-release-setup.svg)](https://www.npmjs.com/package/conventional-release-setup)
-[![Build Status](https://travis-ci.org/remarkablemark/conventional-release-setup.svg?branch=master)](https://travis-ci.org/remarkablemark/conventional-release-setup)
+[![Build Status](https://github.com/remarkablemark/conventional-release-setup/workflows/build/badge.svg?branch=master)](https://github.com/remarkablemark/conventional-release-setup/actions?query=workflow%3Abuild)
 
 Sets up an npm package for committing and releasing with [conventional commits](https://www.conventionalcommits.org/):
 
