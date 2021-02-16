@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.1.1...v1.2.0) (2021-02-16)
+
+
+### Features
+
+* **husky:** update script to set up husky v5 ([510090a](https://github.com/remarkablemark/conventional-release-setup/commit/510090aac7e94ba7b1d98d44193639947fa83fbc))
+
 ## [1.1.1](https://github.com/remarkablemark/conventional-release-setup/compare/v1.1.0...v1.1.1) (2020-06-20)
 
 ### Bug Fixes
