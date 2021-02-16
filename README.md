@@ -53,10 +53,9 @@ Installs devDependencies:
 - [husky](https://www.npmjs.com/package/husky) - sets up Git hooks
 - [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog, bumps version, creates Git commit and tag
 
-Copies configs to your project:
+Copies the config to your project:
 
 - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
-- [.huskyrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.huskyrc.json)
 
 ## Release
 
