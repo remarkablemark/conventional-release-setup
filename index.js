@@ -71,23 +71,33 @@ if (existsSync(packageJsonPath)) {
 }
 
 /**
- * Update `package.json`.
+ * devDependencies.
  */
-const packageJson = require(packageJsonPath);
-packageJson.scripts = packageJson.scripts || {};
-packageJson.scripts.release = 'standard-version --no-verify';
-write(packageJsonPath, packageJson);
-
-/**
- * Install dependencies.
- */
-log('Installing devDependencies...');
 const devDependencies = [
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
   'standard-version'
 ];
+
+/**
+ * Update `package.json`.
+ */
+const packageJson = require(packageJsonPath);
+packageJson.scripts = packageJson.scripts || {};
+packageJson.scripts.release = 'standard-version --no-verify';
+packageJson.scripts.postinstall = 'husky install';
+if (!packageJson.private) {
+  devDependencies.push('pinst');
+  packageJson.scripts.prepublishOnly = 'pinst --disable';
+  packageJson.scripts.postpublish = 'pinst --enable';
+}
+write(packageJsonPath, packageJson);
+
+/**
+ * Install dependencies.
+ */
+log('Installing devDependencies...');
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
 isGitRepository && exec('git add package.json');
 
@@ -105,9 +115,20 @@ readdirSync(filesPath).forEach(filename => {
 });
 
 /**
+ * Add Git hook.
+ */
+log('Adding Git hooks...');
+exec('npx husky install');
+exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
+exec('git add .husky/');
+
+/**
  * Commit changes.
  */
 log('Committing changes...');
 isGitRepository && exec(`git commit -m "chore: run ${name} v${version}"`);
 
+/**
+ * Done.
+ */
 log(`Finished ${name}`);
