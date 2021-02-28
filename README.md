@@ -47,10 +47,10 @@ The script:
   - `scripts`
     - prepends `release` with `husky install`
 - installs devDependencies:
-  - [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) (lints commit messages)
-  - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) (config with [conventional commits](https://conventionalcommits.org/) rules)
-  - [husky](https://www.npmjs.com/package/husky) (sets up git hooks)
-  - [standard-version](https://www.npmjs.com/package/standard-version) (generates changelog, bumps version, and creates git commit and tag)
+  - [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) - lints commit messages
+  - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
+  - [husky](https://www.npmjs.com/package/husky) - sets up git hooks
+  - [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog, bumps version, and creates git commit and tag
 - copies the config:
   - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - adds husky hook `commit-msg`
