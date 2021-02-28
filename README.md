@@ -3,9 +3,9 @@
 [![NPM](https://nodei.co/npm/conventional-release-setup.png)](https://nodei.co/npm/conventional-release-setup/)
 
 [![NPM version](https://img.shields.io/npm/v/conventional-release-setup.svg)](https://www.npmjs.com/package/conventional-release-setup)
-[![Build Status](https://github.com/remarkablemark/conventional-release-setup/workflows/build/badge.svg?branch=master)](https://github.com/remarkablemark/conventional-release-setup/actions?query=workflow%3Abuild)
+[![build](https://github.com/remarkablemark/conventional-release-setup/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablemark/conventional-release-setup/actions/workflows/build.yml)
 
-Sets up an npm package for committing and releasing with [conventional commits](https://www.conventionalcommits.org/):
+Sets up an npm project for committing and releasing with [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```sh
 npx conventional-release-setup
@@ -13,7 +13,7 @@ npx conventional-release-setup
 
 ## Install
 
-To install the package globally:
+Install the CLI globally:
 
 ```sh
 # with npm
@@ -25,13 +25,13 @@ yarn global add conventional-release-setup
 
 ## Usage
 
-If the package is installed globally, you can execute it in the command-line:
+If the CLI is installed globally, you can execute it in the command-line:
 
 ```sh
 conventional-release-setup
 ```
 
-Otherwise, you can install and execute the package binary like so:
+Otherwise, you can install and execute the CLI like so:
 
 ```sh
 npx conventional-release-setup
@@ -39,23 +39,29 @@ npx conventional-release-setup
 
 ## Explanation
 
-What does the script do?
+The script:
 
-It updates `package.json`:
+- updates `package.json`:
+  - `version`
+    - appends `-alpha`
+  - `scripts`
+    - prepends `release` with `husky install`
+- installs devDependencies:
+  - [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) (lints commit messages)
+  - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) (config with [conventional commits](https://conventionalcommits.org/) rules)
+  - [husky](https://www.npmjs.com/package/husky) (sets up git hooks)
+  - [standard-version](https://www.npmjs.com/package/standard-version) (generates changelog, bumps version, and creates git commit and tag)
+- copies the config:
+  - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
+- adds husky hook `commit-msg`
 
-- appends `-alpha` to version
-- adds script `release`
+If the package is not `private`, the script also:
 
-Installs devDependencies:
-
-- [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) - lints commit messages
-- [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
-- [husky](https://www.npmjs.com/package/husky) - sets up Git hooks
-- [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog, bumps version, creates Git commit and tag
-
-Copies the config to your project:
-
-- [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
+- updates `package.json` scripts:
+  - prepends `pinst --enable` to `postpublish`
+  - prepends `pinst --disable` to `prepublishOnly`
+- installs devDependency:
+  - [pinst](https://www.npmjs.com/package/pinst) - lets you have `postinstall` hook that runs only in dev
 
 ## Release
 
