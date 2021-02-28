@@ -16,8 +16,8 @@ const execSyncOptions = {
 /**
  * Runs command.
  *
- * @param {String} command
- * @return {String}
+ * @param {string} command
+ * @return {string}
  */
 const exec = command => execSync(command, execSyncOptions);
 
@@ -31,7 +31,7 @@ const log = (...args) => console.log('INFO:', ...args);
 /**
  * Writes to file.
  *
- * @param {String} file
+ * @param {string} file
  * @param {*} data
  */
 const write = (file, data) =>
@@ -40,6 +40,9 @@ const write = (file, data) =>
     (typeof data === 'string' ? data : JSON.stringify(data, null, 2)) + '\n'
   );
 
+/**
+ * Display exit code.
+ */
 process.on('exit', code => {
   log(`Exiting with code: ${code}`);
 });
@@ -50,13 +53,14 @@ process.on('exit', code => {
 log(`${name} v${version}`);
 
 /**
- * Check if current working directory is git repository.
+ * Check if current working directory is a git repository.
  */
-let isGitRepository = true;
+let isGit;
 try {
   exec(`git -C ${cwd} rev-parse`);
-} catch (err) {
-  isGitRepository = false;
+  isGit = true;
+} catch (error) {
+  isGit = false;
 }
 
 /**
@@ -64,9 +68,9 @@ try {
  */
 const packageJsonPath = resolve(cwd, 'package.json');
 if (existsSync(packageJsonPath)) {
-  log('Found `package.json`');
+  log('`package.json` found');
 } else {
-  log('Unable to find `package.json`, initializing new package...');
+  log('`package.json` not found, initializing `package.json`...');
   exec('npm init --yes');
 }
 
@@ -85,13 +89,33 @@ const devDependencies = [
  */
 const packageJson = require(packageJsonPath);
 packageJson.scripts = packageJson.scripts || {};
-packageJson.scripts.release = 'standard-version --no-verify';
-packageJson.scripts.postinstall = 'husky install';
+const { postinstall, release } = packageJson.scripts;
+
+const huskyInstall = 'husky install';
+packageJson.scripts.postinstall = postinstall
+  ? `${huskyInstall} && ${postinstall}`
+  : huskyInstall;
+
+const standardVersion = 'standard-version --no-verify';
+packageJson.scripts.release = release
+  ? `${standardVersion} && ${release}`
+  : standardVersion;
+
 if (!packageJson.private) {
   devDependencies.push('pinst');
-  packageJson.scripts.prepublishOnly = 'pinst --disable';
-  packageJson.scripts.postpublish = 'pinst --enable';
+  const { postpublish, prepublishOnly } = packageJson.scripts;
+
+  const pinstEnable = 'pinst --enable';
+  packageJson.scripts.postpublish = postpublish
+    ? `${pinstEnable} && ${postpublish}`
+    : pinstEnable;
+
+  const pinstDisable = 'pinst --disable';
+  packageJson.scripts.prepublishOnly = prepublishOnly
+    ? `${pinstDisable} && ${prepublishOnly}`
+    : pinstDisable;
 }
+
 write(packageJsonPath, packageJson);
 
 /**
@@ -99,7 +123,7 @@ write(packageJsonPath, packageJson);
  */
 log('Installing devDependencies...');
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
-isGitRepository && exec('git add package.json');
+isGit && exec('git add package.json');
 
 /**
  * Copy files.
@@ -111,24 +135,27 @@ readdirSync(filesPath).forEach(filename => {
   const destination = resolve(cwd, filename);
   log(`Copying \`${filename}\``);
   copyFileSync(source, destination);
-  isGitRepository && exec(`git add ${filename}`);
+  isGit && exec(`git add ${filename}`);
 });
 
 /**
- * Add Git hook.
+ * Add hooks.
  */
-log('Adding Git hooks...');
-exec('npx husky install');
-exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
-exec('git add .husky/');
+if (isGit) {
+  log('Adding hooks...');
+  exec(`npx ${huskyInstall}`);
+  exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
+  exec('git add .husky/');
+}
 
 /**
  * Commit changes.
  */
-log('Committing changes...');
-isGitRepository && exec(`git commit -m "chore: run ${name} v${version}"`);
+if (isGit) {
+  log('Committing changes...');
+  exec(
+    `git commit -m 'chore: set up conventional release' -m '${name} v${version}'`
+  );
+}
 
-/**
- * Done.
- */
 log(`Finished ${name}`);
