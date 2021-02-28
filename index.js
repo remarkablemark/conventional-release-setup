@@ -50,13 +50,14 @@ process.on('exit', code => {
 log(`${name} v${version}`);
 
 /**
- * Check if current working directory is git repository.
+ * Check if current working directory is a git repository.
  */
-let isGitRepository = true;
+let isGit;
 try {
   exec(`git -C ${cwd} rev-parse`);
-} catch (err) {
-  isGitRepository = false;
+  isGit = true;
+} catch (error) {
+  isGit = false;
 }
 
 /**
@@ -99,7 +100,7 @@ write(packageJsonPath, packageJson);
  */
 log('Installing devDependencies...');
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
-isGitRepository && exec('git add package.json');
+isGit && exec('git add package.json');
 
 /**
  * Copy files.
@@ -111,24 +112,27 @@ readdirSync(filesPath).forEach(filename => {
   const destination = resolve(cwd, filename);
   log(`Copying \`${filename}\``);
   copyFileSync(source, destination);
-  isGitRepository && exec(`git add ${filename}`);
+  isGit && exec(`git add ${filename}`);
 });
 
 /**
- * Add Git hook.
+ * Add hooks.
  */
-log('Adding Git hooks...');
-exec('npx husky install');
-exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
-exec('git add .husky/');
+if (isGit) {
+  log('Adding hooks...');
+  exec(`npx husky install`);
+  exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
+  exec('git add .husky/');
+}
 
 /**
  * Commit changes.
  */
-log('Committing changes...');
-isGitRepository && exec(`git commit -m "chore: run ${name} v${version}"`);
+if (isGit) {
+  log('Committing changes...');
+  exec(
+    `git commit -m 'chore: set up conventional release' -m '${name} v${version}'`
+  );
+}
 
-/**
- * Done.
- */
 log(`Finished ${name}`);
