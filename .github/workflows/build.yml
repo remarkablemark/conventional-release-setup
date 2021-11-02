@@ -1,19 +1,31 @@
 name: build
 on: [push, pull_request]
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14]
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npx commitlint --from=HEAD~1
-      - run: npm run lint
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package.json', './package.json') }}
+        id: cache
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install --prefer-offline
+
+      - name: Lint commit message
+        run: npx commitlint --from=HEAD~1
+
+      - name: Run ESLint
+        run: npm run lint
