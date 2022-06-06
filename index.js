@@ -144,8 +144,9 @@ readdirSync(filesPath).forEach(filename => {
 if (isGit) {
   log('Adding hooks...');
   exec(`npx ${huskyInstall}`);
-  exec(`npx husky add .husky/commit-msg 'npx commitlint --edit $1'`);
-  exec('git add .husky/');
+  exec(`npx husky add .husky/commit-msg ''`);
+  exec(`echo 'npx commitlint --edit $1' >> .husky/commit-msg`);
+  exec('git add .husky');
 }
 
 /**
