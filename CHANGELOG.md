@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.2](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.1...v1.2.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* **index:** fix script so $1 is added to husky hook commit-msg ([49b894a](https://github.com/remarkablemark/conventional-release-setup/commit/49b894abeacb5509c1ac857d76ae87996875a4ce))
+
 ### [1.2.1](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.0...v1.2.1) (2021-02-28)
 
 
