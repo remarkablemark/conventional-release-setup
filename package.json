@@ -9,8 +9,7 @@
     "lint:fix": "npm run lint -- --fix",
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
-    "prepublishOnly": "pinst --disable",
-    "release": "standard-version --no-verify"
+    "prepublishOnly": "pinst --disable"
   },
   "repository": {
     "type": "git",
@@ -32,8 +31,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.0",
     "pinst": "^3.0.0",
-    "prettier": "^2.6.2",
-    "standard-version": "^9.5.0"
+    "prettier": "^2.6.2"
   },
   "files": [
     "/files",
