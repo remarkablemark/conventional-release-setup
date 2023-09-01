@@ -1,23 +1,10 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import child_process from 'child_process';
 import path from 'path';
+import { cwd, exec } from './utils';
 
 const pkg = require('../package.json');
-
-const cwd = process.cwd();
-
-const execSyncOptions = {
-  cwd,
-  stdio: 'inherit',
-} as const;
-
-/**
- * Runs command.
- */
-const exec = (command: string) =>
-  child_process.execSync(command, execSyncOptions);
 
 /**
  * Logs to console.
