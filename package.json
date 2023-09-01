@@ -11,7 +11,8 @@
     "lint:fix": "npm run lint -- --fix",
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
-    "prepublishOnly": "pinst --disable && npm run lint && npm run clean && npm run build"
+    "prepublishOnly": "pinst --disable && npm run lint && npm run clean && npm run build",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "lint-staged": "^14.0.1",
     "pinst": "^3.0.0",
     "prettier": "^3.0.3",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
   },
   "files": [
