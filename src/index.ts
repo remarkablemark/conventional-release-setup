@@ -1,61 +1,41 @@
 #!/usr/bin/env node
 
-const { copyFileSync, existsSync, readdirSync, writeFileSync } = require('fs');
-const { execSync } = require('child_process');
-const { resolve } = require('path');
+import fs from 'fs';
+import path from 'path';
+import { cwd, exec } from './utils';
 
-const { name, version } = require('./package');
-
-const cwd = process.cwd();
-
-const execSyncOptions = {
-  cwd: cwd,
-  stdio: 'inherit'
-};
-
-/**
- * Runs command.
- *
- * @param {string} command
- * @return {string}
- */
-const exec = command => execSync(command, execSyncOptions);
+const pkg = require('../package.json');
 
 /**
  * Logs to console.
- *
- * @param {...*} args
  */
-const log = (...args) => console.log('INFO:', ...args);
+const log = (...args: any[]) => console.log('INFO:', ...args);
 
 /**
  * Writes to file.
- *
- * @param {string} file
- * @param {*} data
  */
-const write = (file, data) =>
-  writeFileSync(
+const write = (file: string, data: any) =>
+  fs.writeFileSync(
     file,
-    (typeof data === 'string' ? data : JSON.stringify(data, null, 2)) + '\n'
+    (typeof data === 'string' ? data : JSON.stringify(data, null, 2)) + '\n',
   );
 
 /**
  * Display exit code.
  */
-process.on('exit', code => {
+process.on('exit', (code) => {
   log(`Exiting with code: ${code}`);
 });
 
 /**
  * Display package info.
  */
-log(`${name} v${version}`);
+log(`${pkg.name} v${pkg.version}`);
 
 /**
  * Check if current working directory is a git repository.
  */
-let isGit;
+let isGit: boolean;
 try {
   exec(`git -C ${cwd} rev-parse`);
   isGit = true;
@@ -66,8 +46,8 @@ try {
 /**
  * Check if `package.json` exists.
  */
-const packageJsonPath = resolve(cwd, 'package.json');
-if (existsSync(packageJsonPath)) {
+const packageJsonPath = path.resolve(cwd, 'package.json');
+if (fs.existsSync(packageJsonPath)) {
   log('`package.json` found');
 } else {
   log('`package.json` not found, initializing `package.json`...');
@@ -81,7 +61,7 @@ const devDependencies = [
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
-  'standard-version'
+  'standard-version',
 ];
 
 /**
@@ -129,12 +109,12 @@ isGit && exec('git add package.json');
  * Copy files.
  */
 log('Copying files...');
-const filesPath = resolve(__dirname, 'files');
-readdirSync(filesPath).forEach(filename => {
-  const source = resolve(filesPath, filename);
-  const destination = resolve(cwd, filename);
+const filesPath = path.resolve(__dirname, '../files');
+fs.readdirSync(filesPath).forEach((filename: string) => {
+  const source = path.resolve(filesPath, filename);
+  const destination = path.resolve(cwd, filename);
   log(`Copying \`${filename}\``);
-  copyFileSync(source, destination);
+  fs.copyFileSync(source, destination);
   isGit && exec(`git add ${filename}`);
 });
 
@@ -155,8 +135,8 @@ if (isGit) {
 if (isGit) {
   log('Committing changes...');
   exec(
-    `git commit -m 'chore: set up conventional release' -m '${name} v${version}'`
+    `git commit -m 'chore: set up conventional release' -m '${pkg.name} v${pkg.version}'`,
   );
 }
 
-log(`Finished ${name}`);
+log(`Finished ${pkg.name}`);

@@ -3,13 +3,12 @@
     "jest": true,
     "node": true
   },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  },
-  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "prettier/prettier": "error"
   }
 }

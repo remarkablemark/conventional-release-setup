@@ -11,21 +11,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json', './package.json') }}
-        id: cache
+          cache: npm
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install --prefer-offline
+        run: npm install
 
       - name: Lint commit message
         run: npx commitlint --from=HEAD~1
 
       - name: Run ESLint
         run: npm run lint
+
+      - name: Check type
+        run: npm run lint:tsc
+
+      - name: Configure Git user
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Run tests
+        run: npm run test:ci
+
+      - name: Codecov
+        uses: codecov/codecov-action@v3
