@@ -80,20 +80,6 @@ Or if you want to use the current version as your [first release](https://github
 npx standard-version --first-release
 ```
 
-## Lint
-
-Lint files:
-
-```sh
-npm run lint
-```
-
-Fix lint errors:
-
-```sh
-npm run lint:fix
-```
-
 ## Release
 
 Release and publish are automated by [Release Please](https://github.com/googleapis/release-please).
