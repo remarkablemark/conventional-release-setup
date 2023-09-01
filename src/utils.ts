@@ -10,5 +10,7 @@ const execSyncOptions = {
 /**
  * Runs command.
  */
-export const exec = (command: string) =>
-  child_process.execSync(command, execSyncOptions);
+export const exec = (
+  command: string,
+  options?: child_process.ExecSyncOptionsWithBufferEncoding,
+) => child_process.execSync(command, { ...execSyncOptions, ...options });
