@@ -4,6 +4,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/conventional-release-setup.svg)](https://www.npmjs.com/package/conventional-release-setup)
 [![build](https://github.com/remarkablemark/conventional-release-setup/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablemark/conventional-release-setup/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/remarkablemark/conventional-release-setup/graph/badge.svg?token=9U6TQRNAZ9)](https://codecov.io/gh/remarkablemark/conventional-release-setup)
 
 Sets up an npm project for committing and releasing with [Conventional Commits](https://www.conventionalcommits.org/):
 
