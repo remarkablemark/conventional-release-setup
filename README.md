@@ -11,30 +11,19 @@ Sets up an npm project for committing and releasing with [Conventional Commits](
 npx conventional-release-setup
 ```
 
-## Install
-
-Install the CLI globally:
-
-```sh
-# with npm
-npm install --global conventional-release-setup
-
-# with yarn
-yarn global add conventional-release-setup
-```
-
 ## Usage
 
-If the CLI is installed globally, you can execute it in the command-line:
-
-```sh
-conventional-release-setup
-```
-
-Otherwise, you can install and execute the CLI like so:
+Run the CLI:
 
 ```sh
 npx conventional-release-setup
+```
+
+Or install the CLI globally and run:
+
+```sh
+npm install --global conventional-release-setup
+conventional-release-setup
 ```
 
 ## Explanation
