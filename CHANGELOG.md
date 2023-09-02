@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.2...v2.0.0) (2023-09-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace `standard-version` with `release-please.yml`
+
+### Features
+
+* replace `standard-version` with `release-please.yml` ([f2eaa64](https://github.com/remarkablemark/conventional-release-setup/commit/f2eaa645ffbfa3611cd742f9c5c49f6c41bbdc02))
+
 ## [1.2.2](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.1...v1.2.2) (2022-06-06)
 
 ### Bug Fixes
