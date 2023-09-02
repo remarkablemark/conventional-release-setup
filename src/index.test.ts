@@ -35,6 +35,12 @@ describe('CLI', () => {
     expect(JSON.parse(readFileSync('.commitlintrc.json'))).toMatchSnapshot();
   });
 
+  it('copies .github/workflows/release-please.yml', () => {
+    expect(
+      readFileSync('.github/workflows/release-please.yml'),
+    ).toMatchSnapshot();
+  });
+
   it('adds .husky/.commit-msg', () => {
     expect(readFileSync('.husky/commit-msg')).toMatchSnapshot();
   });
