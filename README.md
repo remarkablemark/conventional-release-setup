@@ -27,7 +27,13 @@ npm install --global conventional-release-setup
 conventional-release-setup
 ```
 
-## Explanation
+If you want to release with [standard-version](https://www.npmjs.com/package/standard-version), then use v1:
+
+```sh
+npx conventional-release-setup@1
+```
+
+## What It Does
 
 The script:
 
@@ -40,12 +46,12 @@ The script:
   - [@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli) - lints commit messages
   - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
   - [husky](https://www.npmjs.com/package/husky) - sets up git hooks
-  - [standard-version](https://www.npmjs.com/package/standard-version) - generates changelog, bumps version, and creates git commit and tag
-- copies the config:
+- copies the configs:
+  - [.github/workflows/release-please.yml](https://github.com/google-github-actions/release-please-action) - generates changelog, bumps version, and creates git commit, tag, and release
   - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - adds husky hook `commit-msg`
 
-If the package is not `private`, the script also:
+If the package is not `private`, then the script:
 
 - updates `package.json` scripts:
   - prepends `pinst --enable` to `postpublish`
@@ -55,35 +61,7 @@ If the package is not `private`, the script also:
 
 ## Release
 
-If `-alpha` is appended to your `package.json` version:
-
-```json
-{
-  "version": "1.0.0-alpha"
-}
-```
-
-You can run a release like so:
-
-```sh
-npm run release # npx standard-version --no-verify
-```
-
-Otherwise, you can [release as a target type imperatively](https://github.com/conventional-changelog/standard-version#release-as-a-target-type-imperatively-npm-version-like):
-
-```sh
-npx standard-version --release-as 1.0.0
-```
-
-Or if you want to use the current version as your [first release](https://github.com/conventional-changelog/standard-version#first-release):
-
-```sh
-npx standard-version --first-release
-```
-
-## Release
-
-Release and publish are automated by [Release Please](https://github.com/googleapis/release-please).
+Release is automated with [Release Please](https://github.com/google-github-actions/release-please-action).
 
 ## License
 
