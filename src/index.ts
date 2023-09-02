@@ -61,7 +61,6 @@ const devDependencies = [
   '@commitlint/cli',
   '@commitlint/config-conventional',
   'husky',
-  'standard-version',
 ];
 
 /**
@@ -69,17 +68,12 @@ const devDependencies = [
  */
 const packageJson = require(packageJsonPath);
 packageJson.scripts = packageJson.scripts || {};
-const { postinstall, release } = packageJson.scripts;
+const { postinstall } = packageJson.scripts;
 
 const huskyInstall = 'husky install';
 packageJson.scripts.postinstall = postinstall
   ? `${huskyInstall} && ${postinstall}`
   : huskyInstall;
-
-const standardVersion = 'standard-version --no-verify';
-packageJson.scripts.release = release
-  ? `${standardVersion} && ${release}`
-  : standardVersion;
 
 if (!packageJson.private) {
   devDependencies.push('pinst');
@@ -109,14 +103,9 @@ isGit && exec('git add package.json');
  * Copy files.
  */
 log('Copying files...');
-const filesPath = path.resolve(__dirname, '../files');
-fs.readdirSync(filesPath).forEach((filename: string) => {
-  const source = path.resolve(filesPath, filename);
-  const destination = path.resolve(cwd, filename);
-  log(`Copying \`${filename}\``);
-  fs.copyFileSync(source, destination);
-  isGit && exec(`git add ${filename}`);
-});
+fs.cpSync(path.resolve(__dirname, '../files'), cwd, { recursive: true });
+isGit &&
+  exec(`git add .commitlintrc.json .github/workflows/release-please.yml`);
 
 /**
  * Add hooks.

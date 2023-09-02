@@ -17,6 +17,25 @@ exports[`CLI copies .commitlintrc.json 1`] = `
 }
 `;
 
+exports[`CLI copies .github/workflows/release-please.yml 1`] = `
+"name: release-please
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+"
+`;
+
 exports[`CLI updates package.json 1`] = `
 {
   "author": "",
@@ -26,7 +45,6 @@ exports[`CLI updates package.json 1`] = `
     "@commitlint/config-conventional": "^17.7.0",
     "husky": "^8.0.3",
     "pinst": "^3.0.0",
-    "standard-version": "^9.5.0",
   },
   "keywords": [],
   "license": "ISC",
@@ -36,7 +54,6 @@ exports[`CLI updates package.json 1`] = `
     "postinstall": "husky install",
     "postpublish": "pinst --enable",
     "prepublishOnly": "pinst --disable",
-    "release": "standard-version --no-verify",
     "test": "echo "Error: no test specified" && exit 1",
   },
   "version": "1.0.0",
