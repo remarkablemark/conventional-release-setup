@@ -97,15 +97,18 @@ write(packageJsonPath, packageJson);
  */
 log('Installing devDependencies...');
 exec(`npm install --save-dev ${devDependencies.join(' ')}`);
-isGit && exec('git add package.json');
+if (isGit) {
+  exec('git add package.json');
+}
 
 /**
  * Copy files.
  */
 log('Copying files...');
 fs.cpSync(path.resolve(__dirname, '../files'), cwd, { recursive: true });
-isGit &&
+if (isGit) {
   exec(`git add .commitlintrc.json .github/workflows/release-please.yml`);
+}
 
 /**
  * Add hooks.
@@ -113,9 +116,10 @@ isGit &&
 if (isGit) {
   log('Adding hooks...');
   exec(`npx ${huskyInstall}`);
-  exec(`npx husky add .husky/commit-msg ''`);
-  exec(`echo 'npx commitlint --edit $1' >> .husky/commit-msg`);
-  exec('git add .husky');
+  const huskyCommitMsgPath = '.husky/commit-msg';
+  exec(`npx husky add ${huskyCommitMsgPath} ''`);
+  exec(`echo 'npx commitlint --edit $1' >> ${huskyCommitMsgPath}`);
+  exec(`git add ${huskyCommitMsgPath}`);
 }
 
 /**

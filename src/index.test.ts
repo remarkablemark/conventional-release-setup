@@ -5,9 +5,7 @@ import { exec } from './utils';
 const cwd = path.resolve(__dirname, '../lib');
 
 function readFileSync(filepath: string) {
-  return fs.readFileSync(path.resolve(cwd, filepath), {
-    encoding: 'utf8',
-  });
+  return fs.readFileSync(path.resolve(cwd, filepath), 'utf8');
 }
 
 function clean() {
