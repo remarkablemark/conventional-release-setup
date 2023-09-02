@@ -9,7 +9,7 @@
 Sets up an npm project for committing and releasing with [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```sh
-npx conventional-release-setup
+npx conventional-release-setup@latest
 ```
 
 ## Usage
