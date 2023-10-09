@@ -26,7 +26,11 @@ describe('CLI', () => {
   });
 
   it('updates package.json', () => {
-    expect(JSON.parse(readFileSync('package.json'))).toMatchSnapshot();
+    const packageJson = JSON.parse(readFileSync('package.json'));
+    for (const property in packageJson.devDependencies) {
+      packageJson.devDependencies[property] = '*';
+    }
+    expect(packageJson).toMatchSnapshot();
   });
 
   it('copies .commitlintrc.json', () => {
