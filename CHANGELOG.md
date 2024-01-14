@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/remarkablemark/conventional-release-setup/compare/v2.0.0...v2.1.0) (2024-01-14)
+
+
+### Features
+
+* **files:** update .github/workflows/release-please.yml to use v4 ([cf52163](https://github.com/remarkablemark/conventional-release-setup/commit/cf521636b3b1f3f641f9737f57fee541ac517eba))
+
 ## [2.0.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.2...v2.0.0) (2023-09-02)
 
 
