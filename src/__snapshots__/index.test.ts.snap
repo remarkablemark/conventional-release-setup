@@ -1,11 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CLI adds .husky/.commit-msg 1`] = `
-"#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-
-npx commitlint --edit $1
+"npx commitlint --edit $1
 "
 `;
 
@@ -44,16 +40,13 @@ exports[`CLI updates package.json 1`] = `
     "@commitlint/cli": "*",
     "@commitlint/config-conventional": "*",
     "husky": "*",
-    "pinst": "*",
   },
   "keywords": [],
   "license": "ISC",
   "main": "index.js",
   "name": "lib",
   "scripts": {
-    "postinstall": "husky install",
-    "postpublish": "pinst --enable",
-    "prepublishOnly": "pinst --disable",
+    "prepare": "husky",
     "test": "echo "Error: no test specified" && exit 1",
   },
   "version": "1.0.0",
