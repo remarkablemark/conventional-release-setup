@@ -1,8 +1,9 @@
-name: release
+name: release-please
 on:
   push:
     branches:
       - master
+      - 1.x
 
 jobs:
   release-please:
@@ -13,9 +14,10 @@ jobs:
     steps:
       - name: Release Please
         uses: google-github-actions/release-please-action@v3
+        id: release
         with:
           release-type: node
-        id: release
+          target-branch: ${{ github.ref_name }}
 
   publish:
     needs: release-please
