@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.2...v1.3.0) (2024-01-26)
+
+
+### Features
+
+* **husky:** migrate husky from 8 to 9 ([86eb26d](https://github.com/remarkablemark/conventional-release-setup/commit/86eb26d15cbf1036052e2fa66130263e1e8f3451))
+
 ## [1.2.2](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.1...v1.2.2) (2022-06-06)
 
 ### Bug Fixes
