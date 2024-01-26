@@ -69,32 +69,17 @@ const devDependencies = [
  */
 const packageJson = require(packageJsonPath);
 packageJson.scripts = packageJson.scripts || {};
-const { postinstall, release } = packageJson.scripts;
+const { prepare, release } = packageJson.scripts;
 
-const huskyInstall = 'husky install';
-packageJson.scripts.postinstall = postinstall
-  ? `${huskyInstall} && ${postinstall}`
-  : huskyInstall;
+const huskyInit = 'husky';
+packageJson.scripts.prepare = prepare
+  ? `${huskyInit} && ${prepare}`
+  : huskyInit;
 
 const standardVersion = 'standard-version --no-verify';
 packageJson.scripts.release = release
   ? `${standardVersion} && ${release}`
   : standardVersion;
-
-if (!packageJson.private) {
-  devDependencies.push('pinst');
-  const { postpublish, prepublishOnly } = packageJson.scripts;
-
-  const pinstEnable = 'pinst --enable';
-  packageJson.scripts.postpublish = postpublish
-    ? `${pinstEnable} && ${postpublish}`
-    : pinstEnable;
-
-  const pinstDisable = 'pinst --disable';
-  packageJson.scripts.prepublishOnly = prepublishOnly
-    ? `${pinstDisable} && ${prepublishOnly}`
-    : pinstDisable;
-}
 
 write(packageJsonPath, packageJson);
 
@@ -123,10 +108,10 @@ fs.readdirSync(filesPath).forEach((filename: string) => {
  */
 if (isGit) {
   log('Adding hooks...');
-  exec(`npx ${huskyInstall}`);
-  exec(`npx husky add .husky/commit-msg ''`);
-  exec(`echo 'npx commitlint --edit $1' >> .husky/commit-msg`);
-  exec('git add .husky');
+  exec(`npx ${huskyInit}`);
+  const huskyCommitMsgPath = '.husky/commit-msg';
+  exec(`echo 'npx commitlint --edit $1' >> ${huskyCommitMsgPath}`);
+  exec(`git add ${huskyCommitMsgPath}`);
 }
 
 /**

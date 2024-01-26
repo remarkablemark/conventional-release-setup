@@ -45,14 +45,6 @@ The script:
   - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - adds husky hook `commit-msg`
 
-If the package is not `private`, the script also:
-
-- updates `package.json` scripts:
-  - prepends `pinst --enable` to `postpublish`
-  - prepends `pinst --disable` to `prepublishOnly`
-- installs devDependency:
-  - [pinst](https://www.npmjs.com/package/pinst) - lets you have `postinstall` hook that runs only in dev
-
 ## Release
 
 If `-alpha` is appended to your `package.json` version:
