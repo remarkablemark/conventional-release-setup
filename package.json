@@ -1,6 +1,6 @@
 {
   "name": "conventional-release-setup",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Sets up package for committing/releasing with conventional commits.",
   "author": "Mark <mark@remarkablemark.org>",
   "bin": "lib/index.js",
