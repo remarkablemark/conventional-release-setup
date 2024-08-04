@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { cwd, exec } from './utils';
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const pkg = require('../package.json');
 
 /**
@@ -39,6 +40,7 @@ let isGit: boolean;
 try {
   exec(`git -C ${cwd} rev-parse`);
   isGit = true;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 } catch (error) {
   isGit = false;
 }
@@ -66,6 +68,7 @@ const devDependencies = [
 /**
  * Update `package.json`.
  */
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const packageJson = require(packageJsonPath);
 packageJson.scripts = packageJson.scripts || {};
 const { prepare } = packageJson.scripts;
