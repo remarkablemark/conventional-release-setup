@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
+
 import { cwd, exec } from './utils';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -10,6 +11,7 @@ const pkg = require('../package.json');
 /**
  * Logs to console.
  */
+// eslint-disable-next-line no-console
 const log = (...args: any[]) => console.log('INFO:', ...args);
 
 /**
