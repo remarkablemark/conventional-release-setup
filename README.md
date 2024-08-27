@@ -47,13 +47,13 @@ The script:
   - [@commitlint/config-conventional](https://www.npmjs.com/package/@commitlint/config-conventional) - config with [conventional commits](https://conventionalcommits.org/) rules
   - [husky](https://www.npmjs.com/package/husky) - sets up git hooks
 - copies the configs:
-  - [.github/workflows/release-please.yml](https://github.com/google-github-actions/release-please-action) - generates changelog, bumps version, and creates git commit, tag, and release
+  - [.github/workflows/release-please.yml](https://github.com/googleapis/release-please-action) - generates changelog, bumps version, and creates git commit, tag, and release
   - [.commitlintrc.json](https://github.com/remarkablemark/conventional-release-setup/blob/master/files/.commitlintrc.json)
 - adds husky hook `commit-msg`
 
 ## Release
 
-Release is automated with [Release Please](https://github.com/google-github-actions/release-please-action).
+Release is automated with [Release Please](https://github.com/googleapis/release-please-action).
 
 ## License
 
