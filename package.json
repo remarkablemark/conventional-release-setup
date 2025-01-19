@@ -3,7 +3,9 @@
   "version": "2.3.0",
   "description": "Sets up package for committing/releasing with conventional commits.",
   "author": "Mark <mark@remarkablemark.org>",
-  "bin": "lib/index.js",
+  "bin": {
+    "conventional-release-setup": "lib/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
@@ -17,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/remarkablemark/conventional-release-setup"
+    "url": "git+https://github.com/remarkablemark/conventional-release-setup.git"
   },
   "bugs": {
     "url": "https://github.com/remarkablemark/conventional-release-setup/issues"
