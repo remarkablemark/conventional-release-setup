@@ -1,45 +1,44 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [2.3.0](https://github.com/remarkablemark/conventional-release-setup/compare/v2.2.1...v2.3.0) (2024-08-27)
-
-
-### Features
-
-* **files:** update release-please action ([4b489ec](https://github.com/remarkablemark/conventional-release-setup/commit/4b489ec90c05afeea09cff60418f61225ed206a8))
-
-## [2.2.1](https://github.com/remarkablemark/conventional-release-setup/compare/v2.2.0...v2.2.1) (2024-03-04)
-
+## [2.3.1](https://github.com/remarkablemark/conventional-release-setup/compare/v2.3.0...v2.3.1) (2025-12-04)
 
 ### Miscellaneous Chores
 
-* release 2.2.1 ([2507b63](https://github.com/remarkablemark/conventional-release-setup/commit/2507b63b42ff51f92647102e63cdbecaf12cbd78))
+- release 2.3.1 ([d91f95e](https://github.com/remarkablemark/conventional-release-setup/commit/d91f95e946d776cede49f21a8f7478b55cdcdc50))
+
+## [2.3.0](https://github.com/remarkablemark/conventional-release-setup/compare/v2.2.1...v2.3.0) (2024-08-27)
+
+### Features
+
+- **files:** update release-please action ([4b489ec](https://github.com/remarkablemark/conventional-release-setup/commit/4b489ec90c05afeea09cff60418f61225ed206a8))
+
+## [2.2.1](https://github.com/remarkablemark/conventional-release-setup/compare/v2.2.0...v2.2.1) (2024-03-04)
+
+### Miscellaneous Chores
+
+- release 2.2.1 ([2507b63](https://github.com/remarkablemark/conventional-release-setup/commit/2507b63b42ff51f92647102e63cdbecaf12cbd78))
 
 ## [2.2.0](https://github.com/remarkablemark/conventional-release-setup/compare/v2.1.0...v2.2.0) (2024-01-26)
 
-
 ### Features
 
-* **husky:** migrate husky from 8 to 9 ([178f49f](https://github.com/remarkablemark/conventional-release-setup/commit/178f49f5cc3a35f95ed9c7a5553bd3c50276b3ec))
+- **husky:** migrate husky from 8 to 9 ([178f49f](https://github.com/remarkablemark/conventional-release-setup/commit/178f49f5cc3a35f95ed9c7a5553bd3c50276b3ec))
 
 ## [2.1.0](https://github.com/remarkablemark/conventional-release-setup/compare/v2.0.0...v2.1.0) (2024-01-14)
 
-
 ### Features
 
-* **files:** update .github/workflows/release-please.yml to use v4 ([cf52163](https://github.com/remarkablemark/conventional-release-setup/commit/cf521636b3b1f3f641f9737f57fee541ac517eba))
+- **files:** update .github/workflows/release-please.yml to use v4 ([cf52163](https://github.com/remarkablemark/conventional-release-setup/commit/cf521636b3b1f3f641f9737f57fee541ac517eba))
 
 ## [2.0.0](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.2...v2.0.0) (2023-09-02)
 
-
 ### ⚠ BREAKING CHANGES
 
-* replace `standard-version` with `release-please.yml`
+- replace `standard-version` with `release-please.yml`
 
 ### Features
 
-* replace `standard-version` with `release-please.yml` ([f2eaa64](https://github.com/remarkablemark/conventional-release-setup/commit/f2eaa645ffbfa3611cd742f9c5c49f6c41bbdc02))
+- replace `standard-version` with `release-please.yml` ([f2eaa64](https://github.com/remarkablemark/conventional-release-setup/commit/f2eaa645ffbfa3611cd742f9c5c49f6c41bbdc02))
 
 ## [1.2.2](https://github.com/remarkablemark/conventional-release-setup/compare/v1.2.1...v1.2.2) (2022-06-06)
 
