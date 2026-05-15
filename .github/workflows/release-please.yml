@@ -40,12 +40,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
-        run: npm ci --prefer-offline
-
-      - name: Configure Git user
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        run: npm ci --prefer-offline --ignore-scripts
 
       - name: Publish
         run: npm publish --provenance --access public
